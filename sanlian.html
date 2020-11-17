@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #clickBtn {
+            width: 60px;
+            height: 40px;
+            background: red;
+        }
+</style>
+</head>
+<body>
+    <div id="clickBtn"></div>
+    <p id="timeText"></p>
+		<script type="text/javascript">
+			//点赞、一键三连方法
+			function like(){
+			  console.log("点赞");
+			}
+			
+			function longPress(){
+			  console.log("一键三连");
+			}
+			
+			function getTime() {
+				timeText.innerText = "";
+			  const now = new Date().getTime();
+			  timeText.innerText = (now - start) / 1000;
+			}
+			
+			let timer, startTime, setTimeText;
+			let start = new Date().getTime();
+			
+			const clickBtn = document.getElementById("clickBtn");
+			const timeText = document.getElementById("timeText");
+			
+			clickBtn.addEventListener("mousedown",function(){
+			  startTime = new Date().getTime();//获取mousedown触发时间
+			  setTimeText = setInterval(getTime, 100);
+			  timer = setTimeout(longPress, 3000);//设置定时器
+			});
+			
+			clickBtn.addEventListener("mouseup",function(){
+			  const now = new Date().getTime(); //获取mouseup触发时间
+			  clearInterval(setTimeText);
+			  if (now - startTime < 1000) { //点按仅触发点赞
+			      like();
+			      clearTimeout(timer);
+			  } else if (now - startTime < 3000) { //长按时间不足，不触发任何操作
+			      clearTimeout(timer);
+			  }
+			})
+		</script>
+</body>
+</html>

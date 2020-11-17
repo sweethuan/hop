@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue3</title>
+		<script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
+		<!-- <script src="./js/ref.js" type="text/javascript" charset="utf-8"></script> -->
+	</head>
+	<body>
+		<div id="app">
+			<div>{{num}}</div>
+			<button type="button" @click="jiajia">点击</button>
+
+		</div>
+		<script>
+			let obj = {
+				a: 1
+			}
+			const num = Vue.ref(obj)
+			let arr = [1, 1, 2, 3, 5, 3, 2, 4, 1, 2, 3, 4]
+			arr = arr.reduce((prev, cur) => prev.includes(cur) ? prev : [...prev, cur], [])
+			console.log('a:::', arr)
+			let arrobj = [{
+				name: 'jack',
+				age: 18
+			}, {
+				name: '',
+				age: 28
+			}, {
+				name: 'tom',
+				age: 18
+			}, {
+				name: '',s
+				age: 18
+			}, {
+				name: 'bob',
+				age: 18
+			}]
+			// /console.log(new Set(arr))
+			/* let temp = []
+			for (let i = 0;i<arrobj.length;i++) {
+				if(arrobj[i].name) {
+					temp.push(arrobj[i])
+				}
+			} */
+			arrobj = arrobj.filter(item => item.name)
+
+			console.log('arrobj:', arrobj)
+			const app = {
+				data() {
+					return {
+						num
+					}
+				},
+				methods: {
+					jiajia() {
+						//num.value++
+						this.num.a++
+					}
+				}
+			}
+			Vue.createApp(app).mount('#app')
+		</script>
+	</body>
+</html>

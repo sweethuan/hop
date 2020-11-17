@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			class Father {
+				constructor(name, age) {
+					this.name = name
+					this.age = age
+				}
+				static rap(){
+					console.log('rap')
+					
+				}
+				sing(music){
+					this.music = music
+					return 'sing song:'+ music
+				}
+			}
+			class Son extends Father{
+				constructor(name,age,cj) {
+				  super(name,age)
+					this.cj = cj	
+				}
+				song(na){
+					console.log(super.sing(na) + '儿子')
+				}
+			}
+			let son = new Son('儿子', 8, 66)
+			let father = new Father('父亲',30)
+			son.sing('22', )
+			son.song('冰雨')
+			console.log(son.music)
+		</script>
+	</body>
+</html>

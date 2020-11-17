@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html style="height: 200vh;">
+	<head>
+		<meta charset="utf-8">
+		<title>节流</title>
+	</head>
+	<body>
+		<div>
+			<button id="btn">搜索</button>
+		</div>
+		<script type="text/javascript">
+			let btn = document.querySelector('#btn')
+			btn.addEventListener('click', throttle((e)=>{
+				console.log(this)
+				console.log('点击了')
+			}))
+			// btn.addEventListener('click', function(e){
+				
+			// })
+			
+			
+			function throttle(func, ms = 1000) {
+			  let canRun = true
+			  return function () {
+					//console.log(arguments)
+					let args = arguments
+			    if (!canRun) return
+			    canRun = false
+			    setTimeout(() => {
+			      func.apply(this, args)
+			      canRun = true
+			    }, ms)
+			  }
+			}
+			
+			function debounce(func, ms = 500) {
+			  let timer;
+			  return function (...args) {
+					let 
+			    if (timer) {
+			      clearTimeout(timer)
+			    }
+			    timer = setTimeout(() => {
+			      func.apply(this, args)
+			    }, ms)
+			  }
+			}
+			// 测试
+			const task = () => { console.log('滚啊') }
+			const throttleTask = throttle(task, 1000)
+			window.addEventListener('scroll', throttleTask)
+			
+		</script>
+	</body>
+</html>

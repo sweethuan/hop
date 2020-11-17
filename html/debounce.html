@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html style="height: 200vh;">
+	<head>
+		<meta charset="utf-8">
+		<title>防抖</title>
+	</head>
+	<body>
+		<div>
+			<button id="btn">搜索</button>
+		</div>
+		<script type="text/javascript">
+			let btn = document.querySelector('#btn')
+			btn.addEventListener('click', debounce((e)=>{
+				console.log(this)
+				console.log('点击了')
+			}))
+			// btn.addEventListener('click', function(e){
+			// 	console.log(this)
+			// 	console.log('点击了')
+			// })
+			function debounce(func, ms = 500) {
+			  let timer;
+			  return  (...args) => {
+			    if (timer) {
+			      clearTimeout(timer)
+			    }
+			    timer = setTimeout(() => {
+			      func.apply(this, args)
+			    }, ms)
+			  }
+			}
+			
+			const task = () => { 
+				console.log('滚了滚了') 
+			}
+			const debounceTask = debounce(task, 1000)
+			window.addEventListener('scroll', debounceTask)
+			
+			function test(...a){
+				console.log(a)
+			}
+			test('zs','ls','ww','mz')
+		</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>proxy</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function getProp(object, propertyName, defaultValue) {
+			  if (object[propertyName]===undefined) {
+			    return defaultValue;
+			  }
+			  return object[propertyName];
+			}
+			
+			const hero = {
+			  name: 'Batman',
+			  isVillian: false
+			};
+			
+			// console.log('name' in hero);
+			if(3<5){
+				const arr = [1,2,3,4,5]
+				for (const key in arr) {
+					console.log(key)
+				}
+			}
+			const arr = 123
+		</script>
+	</body>
+</html>

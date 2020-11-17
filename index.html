@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="./js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/china.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body onLoad="javascript:window.resizeTo(screen.availWidth,screen.availHeight);window.moveTo(0,0)">
+		<div id="app" style="width: 600px;height: 400px;"></div>
+		<div id="root"></div>
+		<script type="text/javascript">
+			var myChart = echarts.init(document.getElementById('app'));
+
+			// 指定图表的配置项和数据
+			var option = {
+				tooltip: {
+					trigger: 'item',
+					formatter: (obj) => {
+						return obj.name
+					}
+				},
+				dataRange: {
+					show: false,
+					splitList: [{
+							color: "#6636D0",
+							end: null,
+							label: "",
+							start: 999
+						},
+						{
+							color: "#10FFDD",
+							end: 999,
+							label: "0",
+							start: 0,
+						}
+					],
+				},
+				geo: [{
+					map: 'china',
+					zoom: 1.2,
+					label: {
+						normal: {
+							show: false, // 是否显示对应地名
+							textStyle: {
+								color: 'rgba(0,0,0,0.4)'
+							}
+						}
+					},
+				}],
+				label: {
+					normal: {
+						show: false, 
+						fontSize: "10",
+						color: "rgba(0,0,0,0.7)"
+					},
+					emphasis: {
+						show: false
+					}
+				},
+				series: [{
+					name: '基地',
+					// roam: true,
+					type: 'map',
+					mapType: 'china',
+					zoom: 1.2,
+					label: {
+						show: false,
+					},
+					itemStyle: {
+						normal: {
+							borderColor: '#7cfbff',
+							borderWidth: 2,
+							areaColor: '#00f',
+							/*areaColor: (value) => {
+							  console.log(value)
+							}*/
+						},
+					},
+					emphasis: {
+						itemStyle: {
+							opacity: 1,
+							areaColor: '#ff0'
+						}
+					},
+					data: [{
+							name: "重庆",
+							value: 1000
+						},
+						{
+							name: "广西",
+							value: 1000
+						},
+					],
+				}, {
+					type: 'map',
+					mapType: 'china-contour',
+					// roam: true,
+					silent: true,
+					z: 0,
+					zoom: 1.2,
+					label: {
+						normal: {
+							show: false,
+						},
+						emphasis: {
+							show: false,
+						}
+					},
+					itemStyle: {
+						normal: {
+							borderColor: '#7cfbff',
+							borderWidth: 2,
+							shadowColor: '#f0f',
+							shadowOffsetX: -4,
+							shadowOffsetY: 10,
+						},
+					}
+				}, {
+					name: '基地',
+					type: 'effectScatter',
+					coordinateSystem: 'geo',
+					geoIndex: 0,
+					data: [],
+					// symbolSize: function(val) {
+					//     return val[2] / 10;
+					// },
+					encode: {
+						value: 2
+					},
+					label: {
+						formatter: "{b}",
+						position: "right",
+						show: true
+					},
+					symbolSize: 10,
+					showEffectOn: 'render',
+					hoverAnimation: true,
+					itemStyle: {
+						normal: {
+							color: '#10FFDD',
+							shadowBlur: 10,
+							shadowColor: '#333'
+						}
+					},
+					rippleEffect: {
+						scale: 5,
+						brushType: 'stroke'
+					}
+				}]
+
+			};
+
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+		</script>
+	</body>
+	<script type="text/javascript">
+		var str = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+		var arr = str.split('')
+		var element = document.getElementById("root");
+		var s = 0
+	
+		/* while (false){
+			
+			var temp = []
+			for (let i = 0;i<40;i++) {
+					temp.push(arr[Math.floor(Math.random() * 62)])
+					if(Number(temp[i])){
+						
+					}
+ 				}
+			}
+			
+			//console.log(temp.join(''))
+			var para = document.createElement("p");
+			var node = document.createTextNode(temp.join(''));
+			para.appendChild(node);
+			
+			element.appendChild(para); */
+			
+		
+		
+
+		
+		function date(p_count){
+				var temp = []
+				for(var i=-1;i>=p_count;i--){
+					var dd = new Date();
+					dd.setDate(dd.getDate() + i);//获取p_count天后的日期
+					var y = dd.getFullYear();
+					var m = dd.getMonth() + 1;//获取当前月份的日期
+					if( m <10){
+					    m = '0'+m;
+					}
+					var d = dd.getDate();
+					if( d <10){
+					    d = '0'+d;
+					}
+					temp.push(y + "-" + m + "-" + d)
+				}
+		    
+		    return temp.reverse()
+		}
+		console.log(date(-30))
+	</script>
+</html>
