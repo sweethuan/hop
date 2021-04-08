@@ -1,0 +1,241 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+/*登录页面*/
+.login-wrap {
+  width: 100%;
+  height: 100vh;
+  background: url(../images/bg.jpg) no-repeat center;
+  background-size: cover;
+  position: relative;
+}
+.login-wrap .login-title {
+  color: white;
+  padding: 20px;
+  font-weight: 500;
+}
+.login-wrap .login-box {
+  position: absolute;
+  width: 300px;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  margin-left: -150px;
+  transform: translateY(-50%);
+  background: rgba(3, 92, 132, 0.85);
+  padding: 10px 10px 20px;
+  border-radius: 10px;
+}
+.login-wrap .login-box h2 {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: white;
+}
+.login-wrap .login-box .el-form .el-form-item__label {
+  color: white;
+}
+.login-wrap .login-box .el-form .el-form-item {
+  margin-bottom: 5px;
+}
+.login-wrap .login-box .el-form .el-input__prefix {
+  color: #333333;
+}
+.login-wrap .login-box .el-form .el-form-item__error {
+  top: 33px;
+}
+.login-wrap .login-box .form-btn {
+  margin-left: 70px;
+  margin-top: 12px;
+}
+/*注册页面*/
+.register-form .el-dialog {
+  width: 450px;
+}
+.register-form .top {
+  position: relative;
+  height: 0px;
+  overflow: hidden;
+}
+.register-form .el-form-item {
+  margin-bottom: 6px;
+}
+.register-form .el-form-item__error {
+  top: 33px;
+}
+/*主页面*/
+.home-wrap {
+  height: 100vh;
+}
+/*头部*/
+.home-header {
+  display: flex;
+  height: 40px !important;
+  background: #4395ff;
+  color: white;
+  justify-content: space-between;
+  padding: 0 20px;
+  justify-items: center;
+}
+.home-header .logo {
+  line-height: 40px;
+  font-size: 22px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.home-header .right {
+  display: flex;
+}
+.home-header .right p {
+  line-height: 40px;
+  padding-right: 5px;
+  width: 80px;
+  text-align: center;
+}
+.home-header .right .el-avatar {
+  margin-top: 6px;
+}
+.my-menu .el-menu .el-menu-item {
+  height: 40px;
+  line-height: 40px;
+}
+.my-menu .el-menu .el-menu-item > span {
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.my-content {
+  padding: 0;
+  background: #f5f7f9;
+  overflow: hidden;
+}
+.my-content .first-menu.el-row {
+  margin-top: 0;
+  background-color: white;
+}
+.my-content .first-menu.el-row .el-tabs__header {
+  margin-bottom: 0;
+}
+.my-content .main-content-box {
+  padding: 10px;
+  max-width: 1100px;
+  max-height: calc(100vh - 130px);
+  overflow: auto;
+}
+.my-content .main-content-box .problem-box .el-card__body {
+  padding: 10px;
+}
+.my-content .main-content-box .problem-box .title-top {
+  display: flex;
+  justify-content: space-between;
+}
+.my-content .main-content-box .problem-box .describe {
+  line-height: 25px;
+  font-size: 14px;
+}
+.my-content .main-content-box .problem-box .enclosure {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 25px;
+  color: #ab9d96;
+}
+.my-content .main-content-box .problem-box .content-html {
+  min-height: 100px;
+  background: #f5f7f9;
+}
+/*论坛区域*/
+.forum-wrap {
+  margin-top: 20px;
+  font-size: 14px;
+}
+.forum-wrap .forum-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  line-height: 30px;
+}
+.forum-wrap ul {
+  background: white;
+  padding: 10px;
+}
+.forum-wrap ul li {
+  border: 1px solid #E4E7ED;
+  border-right: none;
+  border-top: none;
+  display: flex;
+  position: relative;
+}
+.forum-wrap ul li .left {
+  width: 187px;
+  display: flex;
+  padding: 5px;
+  border-right: 1px solid #E4E7ED;
+}
+.forum-wrap ul li .left .pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #4395ff;
+}
+.forum-wrap ul li .left .text {
+  padding-top: 5px;
+  padding-left: 5px;
+}
+.forum-wrap ul li .left .text .txt1 {
+  line-height: 20px;
+  color: #4395ff;
+}
+.forum-wrap ul li .left .text .txt2 {
+  line-height: 20px;
+  font-size: 10px;
+  color: #999999;
+}
+.forum-wrap ul li .right {
+  width: calc(100% - 188px);
+  border-right: 1px solid #E4E7ED;
+  padding: 10px 5px 5px;
+}
+.forum-wrap ul li .right .right-html {
+  min-height: 30px;
+}
+.forum-wrap ul li .right .start-date {
+  line-height: 20px;
+}
+.forum-wrap ul li:first-child {
+  border-top: 1px solid #E4E7ED;
+}
+.forum-form {
+  margin-top: 10px;
+  background: white;
+}
+.forum-form .forum-form-top {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+.forum-form .forum-form-top .ipt {
+  width: calc(100% - 67px);
+  height: 32px;
+}
+.forum-form .forum-form-top button {
+  width: 56px;
+}
+.forum-form .huifu .w-e-text-container {
+  height: 200px !important;
+}
+.forum-form .huifu .btn {
+  text-align: right;
+}
+.forum-form .huifu .btn button {
+  border-color: #e33e33;
+  background: #e33e33;
+  margin-top: 10px;
+}

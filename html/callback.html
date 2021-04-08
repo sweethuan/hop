@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/callback.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div></div>
+		<script type="text/javascript">
+			let arr = ['asdfasasffsd','dsfsadgdfagfd']
+			let div = document.querySelector('div')
+			// let a = ''
+			// arr.forEach(item => {
+			// 	a += `<p>${item}</p>`
+			// })
+			let a = arr.reduce((accumulator, currentValue) => {return accumulator + `<p>${currentValue}</p>`}, '')
+			div.innerHTML = a
+		</script>
+	</body>
+</html>

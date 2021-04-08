@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 300px;
+				height: 300px;
+				border: 1px solid aqua;
+				overflow: auto hidden;
+			}
+
+			.box2 {
+				position: relative;
+				height: 100%;
+				overflow: auto;
+				white-space: nowrap;
+			}
+
+			p {
+				float: left;
+				border: 1px solid red;
+				width: 60px;
+			}
+
+			.axis {
+				position: absolute;
+				width: 100%;
+				top: 30px;
+				height: 1px;
+				background-color: blue;
+
+			}
+		</style>
+	</head>
+	<body>
+		<table width="300px" border="1px" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>已取得审批许可时间</td>
+				<td>
+					<div class="box">
+						<div class="box2">
+							<p>123</p>
+							<p>123</p>
+							<p>123</p>
+							<p>123</p>
+							<p>123</p>
+							<p>123</p>
+							<p>123</p>
+							<div class="axis"></div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<script type="text/javascript">
+			let str1 = 'top-0'
+			let str2 = 'leaveUnused-xzyqdList'
+			let obj = {
+				"title": "开工",
+				"top": [{
+					"label": "已开工",
+					"labelKey": "已开工",
+					"value": "1506"
+				}],
+				"bottom": [{
+					"label": "开工提醒",
+					"labelKey": "开工提醒",
+					"value": "0"
+				}, {
+					"label": "未按时开工",
+					"labelKey": "未按时开工",
+					"value": "1918"
+				}],
+				"leaveUnused": {
+					"xzList": {
+						"label": "闲置待认定",
+						"labelKey": "闲置待认定",
+						"value": "1186"
+					},
+					"xzyqdList": {
+						"label": "闲置已确定",
+						"value": "——"
+					},
+					"qyyyList": [{
+						"label": "企业原因",
+						"labelKey": "测试",
+						"value": "——"
+					}, {
+						"label": "已处置",
+						"value": "——"
+					}],
+					"zfyyList": [{
+						"label": "政府原因",
+						"value": "——"
+					}, {
+						"label": "已处置",
+						"value": "——"
+					}]
+				}
+			}
+			let condition, suoyin = str2.split('-')
+			console.log('suoyin',suoyin)
+			for (let val of suoyin) {
+				condition = obj[val]
+				obj = condition
+			}
+			console.log('condition',condition.labelKey)
+		</script>
+	</body>
+</html>

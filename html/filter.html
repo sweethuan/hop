@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+    <script type="text/javascript">
+      let arr = [
+        {
+          name: 'jack',
+          gender: true
+        },
+        {
+          name: 'jack',
+          gender: true
+        }
+      ]
+      // 一个如上数组 如果name相同了, 就判断gender是否相同, 如果也相同, 就给提示, 不相同就啥也不做
+      
+      // function isAllEqual(array) {
+      //     if (array.length > 0) {
+      //         return !array.some(function(value, index) {
+      //             return value !== array[0];
+      //         });
+      //     } else {
+      //         return true;
+      //     }
+      // }
+      // var arr = [
+      //   { name: "苹果", price: 16 },
+      //   { name: "橘子", price: 16 },
+      //   { name: "香蕉", price: 4 },
+      //   { name: "西瓜", price: 16 }
+      // ];
+       
+      // var list = [];
+       
+      // for(let i = 0;i< arr.length;i++) {
+      //     list.push(arr[i].price)
+      // }
+       
+      // console.log(isAllEqual(list)); //false
+      
+      /* let arr = [4, 5,6,6]
+      
+          // let hash = {};
+          // for (let i in arr) {
+          //     if (hash[arr[i]]){
+          //         return true; 
+          //     }
+          //     hash[arr[i]] = true;
+          // }
+          // return false;
+      for (let i = 0; i < arr.length; i++) {
+          console.log(arr.indexOf(arr[i]))
+          if(arr.indexOf(arr[i]) != i) {
+              console.log("数组中有重复元素：" + arr[i], i)
+          }
+      } */
+      // console.log(isRepeat(arr))
+      function isRepeat() {
+        let ary = new Array("111", "222","22", "33", "11");
+        for (let i = 0; i < ary.length; i++) {
+            // console.log(ary.indexOf(ary[i]));
+            if(ary.indexOf(ary[i]) != i) {
+                console.log("数组中有重复元素：" + ary[i])
+                return
+            }
+        }
+      }
+      isRepeat()
+    </script>
+	</body>
+</html>

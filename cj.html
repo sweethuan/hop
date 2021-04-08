@@ -8,6 +8,7 @@
 	</head>
 	<body>
 		<div id="app">
+      <a href="http://23.36.250.63:9527/FBS/Services/ServiceFDFS.ashx?action=download&filetoken=d8580b1aa86146d589ef9deaa7fa7b64" download>点击下载</a>
 			<!-- 大转盘抽奖 -->
 			<lucky-wheel style="width: 310px; height: 310px" ref="LuckyWheel" :prizes="prizes" :default-style="defaultStyle"
 			 :blocks="blocks" :buttons="buttons" @start="startCallBack" @end="endCallBack" />
@@ -15,6 +16,50 @@
 			<lucky-grid style="width: 200px; height: 200px" />
 		</div>
 		<script>
+      let str = "2018-07-01 ~ 2018-07-10"
+      console.log(str.split(' ')[0].replace(/-/, '年').replace(/-/, '月') + '日' + ' ~ ' + str.split(' ')[2].replace(/-/, '年').replace(/-/, '月') + '日')
+      console.log("----------------")
+      
+      
+      function(colums,rowData){
+                          let str = rowData[colums.key]
+              ? rowData[colums.key].split(' ')[0].replace(/-/, '年').replace(/-/, '月') + '日' + ' ~ ' + rowData[colums.key].split(' ')[2].replace(/-/, '年').replace(/-/, '月') + '日'
+              : "";
+            if (!str) {
+              let sfzh = false; //是否置灰
+              let offon = [false, false, false, false];
+              let jd = null;
+              let jdData = [
+                ["土地会审会时间"],
+                ["公布公告时间", "公布公告起止时间", "竞标时间"],
+                ["签订时间", "实际缴清时间"],
+                [
+                  "土地权属登记时间",
+                  "划拨国有建设用地使用权批复时间",
+                  "建设工程规划许可首次核发时间",
+                  "建设用地规划许可首次核发时间",
+                  "建设工程竣工规划核实首次核发时间",
+                  "房屋权属首次登记时间"
+                ]
+              ];
+              jdData.forEach((childData, index) => {
+                childData.forEach(val => {
+                  if (rowData[val]) offon[index] = true;
+                  if (colums.key === val) jd = index;
+                });
+              });
+              offon.forEach((val, index) => {
+                if (jd === index) {
+                  sfzh = offon.slice(index, 4).indexOf(true) > -1 ? false : true;
+                }
+              });
+              if (sfzh) str = `<div style="background:#DCDCDC;height:100%"></div>`;
+            }
+            return str;
+                   }
+      
+      
+      
 			let arr = [1,2,3,4,50,100]
 			let num = 0
 			for (let i=0;i<100000;i++) {
@@ -59,7 +104,7 @@
 					}],
 					buttons: [{
 							radius: '50px',
-							background: '#d64737'
+							background: 'aqeu'
 						},
 						{
 							radius: '45px',

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let res = {}
+      const data = [{
+          title: '已签订合同',
+          labelTitle: '项目个数',
+          code: 'xmgs',
+          bgColor: '#4472C4',
+          dw: '个',
+          data: [] // [{"label":"房地产","dw":"个","value":"93"},{"label":"住宅","dw":"个","value":"57"},{"label":"产业","dw":"个","value":"0"},{"label":"其他","dw":"个","value":"1"}]
+        },
+        {
+          title: '总出让用地面积',
+          labelTitle: '出让面积',
+          bgColor: '#4472C4',
+          code: 'zcrydmj',
+          dw: '公顷',
+          data: []
+        },
+        {
+          title: '总出让价款',
+          labelTitle: '出让总价',
+          bgColor: '#4472C4',
+          code: 'zhtje',
+          dw: '万元',
+          data: []
+        },
+        {
+          title: '正常履约合同',
+          labelTitle: '正常履约项目',
+          bgColor: '#4472C4',
+          code: 'zclyxm',
+          dw: '个',
+          data: []
+        },
+        {
+          title: '未履约项目',
+          labelTitle: '',
+          code: 'wlyxm',
+          bgColor: '#F4B183',
+          dw: '个',
+          data: []
+        },
+        {
+          title: '闲置待认定项目',
+          labelTitle: '疑似闲置项目',
+          bgColor: '#7C7C7C',
+          code: 'ysxztdxm',
+          dw: '1个',
+          data: []
+        }
+      ]
+      res.data = [{
+          "分类": "房地产",
+          "项目个数": "93",
+          "出让面积": "8413992.00",
+          "出让总价": 8077370,
+          "正常履约项目": "33",
+          "疑似闲置项目": "0"
+        },
+        {
+          "分类": "住宅",
+          "项目个数": "57",
+          "出让面积": "4734124.50",
+          "出让总价": 4876067,
+          "正常履约项目": "26",
+          "疑似闲置项目": "0"
+        },
+        {
+          "分类": "产业",
+          "项目个数": "0",
+          "出让面积": "0.00",
+          "出让总价": 0,
+          "正常履约项目": "0",
+          "疑似闲置项目": "0"
+        },
+        {
+          "分类": "其他",
+          "项目个数": "1",
+          "出让面积": "3141.00",
+          "出让总价": 1715,
+          "正常履约项目": "1",
+          "疑似闲置项目": "0"
+        }
+      ]
+      // let newArr = []
+      data.forEach(items => {
+        res.data.forEach(item => {
+          if(item[items.labelTitle] !== undefined) {
+            let obj = {
+              label: item.分类,
+              dw: items.dw,
+              value: item[items.labelTitle]
+            }
+            if (items.labelTitle.indexOf('出让总价') === 0) {
+              obj.value = (Number(Number(obj.value)).toFixed(2))
+            }
+            if (items.labelTitle.indexOf('出让面积') === 0) {
+              obj.value = (Number(Number(obj.value) / 10000).toFixed(2))
+            }
+            items.data.push(obj)
+          }
+        })
+      })
+      console.log(data)
+    </script>
+  </body>
+</html>

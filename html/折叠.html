@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html,body,div {
+        height: 100%;
+      }
+      .box {
+        display: flex;
+        justify-content: space-between;
+      }
+      .left {
+        width: 200px;
+        background-color: #f0f;
+        transition: width 0.2s;
+      }
+      .center {
+        flex: 1;
+        background-color: #00f;
+        transition: width 0.2s;
+      }
+      .right {
+        width: 200px;
+        background-color: #c0a0a0;
+        transition: width 0.2s;
+      }
+    </style>
+	</head>
+	<body>
+    <div class="box">
+      <div class="left"></div>
+      <div class="center"></div>
+      <div class="right"></div>
+    </div>
+    
+    <script type="text/javascript">
+      let left = document.querySelector('.left')
+      let right = document.querySelector('.right')
+      left.addEventListener('click', function() {
+        this.offsetWidth === 200 ? this.style.width = '20px' : this.style.width = '200px'
+      })
+      right.addEventListener('click', function() {
+        this.offsetWidth === 200 ? this.style.width = '20px' : this.style.width = '200px'
+      })
+    </script>
+	</body>
+</html>

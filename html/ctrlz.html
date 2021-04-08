@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+    <input type="text" id="ipt">
+    <button id="ctrlz">撤销</button>
+    <button id="ctrly">前进</button>
+    
+    <script type="text/javascript">
+      const input = document.getElementById('ipt')
+      const ctrlz = document.getElementById('ctrlz')
+      const ctrly = document.getElementById('ctrly')
+      let arr = []
+      let arrIndex = arr.length
+      if(!arrIndex && !arr.length) {
+        ctrlz.style.display = 'none'
+        ctrly.style.display = 'none'
+      }
+      input.addEventListener('input', function(e) {
+        arr.push(e.target.value)
+        arrIndex = arr.length - 1
+        if(arr.length) {
+          ctrlz.style.display = 'inline-block'
+          ctrly.style.display = 'inline-block'
+        }
+      })
+      ctrlz.addEventListener('click', function(e) {
+        arrIndex -= 1
+        if(arrIndex < 0) {
+          arrIndex = -1
+          input.value = ''
+          ctrlz.style.display = 'none'
+        } else {
+          input.value = arr[arrIndex]
+          ctrlz.style.display = 'inline-block'
+        }
+      })
+      ctrly.addEventListener('click', function(e) {
+        arrIndex += 1
+        if(arrIndex >= arr.length - 1) {
+          arrIndex = arr.length - 1
+          ctrly.style.display = 'none'
+        } else {
+          ctrly.style.display = 'inline-block'
+        }
+        input.value = arr[arrIndex]
+      })
+    </script>
+	</body>
+</html>

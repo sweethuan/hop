@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      /* 
+          [{"fieldName":"表资源id","fieldCode":"table_id","dataType":"varchar(36)","valueLength":36,"primaryKey":0,"isConditionField":0,"orderNo":1,"status":1,"comment":"","mandatory":0,"defaultValue":""},{"fieldName":"业务系统id","fieldCode":"sys_id","dataType":"varchar(36)","valueLength":36,"primaryKey":1,"mandatory":1,"isConditionField":0,"orderNo":2,"status":1,"comment":"","defaultValue":""}]
+      */
+      let arr = [{
+        name: 'jack',
+        age: 18,
+        date: '2021-3-1 10:22:22',
+        IsEnable: true,
+        ModifiedBy: null,
+        moeny: 226262.2,
+        LicenceAttachId: '2d2327b2ca7046f6a401f2168351a3c7',
+        CreatedByName: null,
+      }, {
+        name: null,
+        age: 38,
+        date: '2021-3-3 10:20:20',
+        IsEnable: false,
+        ModifiedBy: null,
+        moeny: 2.155,
+        LicenceAttachId: '9f2327b2ca2168351a3c77046f6a401f',
+        CreatedByName: null,
+      }, {
+        name: 'mike',
+        age: 11,
+        date: '2021-3-3 10:20:20',
+        IsEnable: false,
+        ModifiedBy: '18',
+        moeny: 5.52562,
+        LicenceAttachId: '9f2327b2ca2168351a3c77046f6a401f',
+        CreatedByName: null,
+      }]
+      let ret = []
+      for (let i = 0; i < arr.length; i++) {
+        for (let key in arr[i]) {
+          if (!(ret.find(item => item.fieldName === key)) || ret.find(item => item.dataType === 'decimal' && item.fieldCode ===
+              key)) {
+            // console.log('key =>> ', key)
+            switch (typeof arr[i][key]) {
+              case 'string':
+                if (/\d{4}(\-|\/|.)\d{1,2}\1\d{1,2}/.test(arr[i][key])) {
+                  ret.push({
+                    "fieldName": key,
+                    "fieldCode": key,
+                    "dataType": "datatime",
+                    "valueLength": 0,
+                    "primaryKey": 0,
+                    "isConditionField": 0,
+                    "orderNo": ret.length + 1,
+                    "status": 1,
+                    "comment": "",
+                    "mandatory": 0,
+                    "defaultValue": ""
+                  })
+                } else {
+                  ret.push({
+                    "fieldName": key,
+                    "fieldCode": key,
+                    "dataType": "varchar",
+                    "valueLength": 255,
+                    "primaryKey": 0,
+                    "isConditionField": 0,
+                    "orderNo": ret.length + 1,
+                    "status": 1,
+                    "comment": "",
+                    "mandatory": 0,
+                    "defaultValue": ""
+                  })
+                }
+                break
+              case 'number':
+                if (/^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$/.test(String(arr[i][key]))) {
+                  let splitArr = String(arr[i][key]).split('.')
+                  let zsCount = splitArr[0].length //获取小数点前的个数
+                  let xsCount = splitArr[1].length //获取小数点后的个数
+                  if (zsCount <= 10) {
+                    zsCount = 10
+                  }
+                  if (xsCount >= 10) {
+                    xsCount = 10
+                  }
+
+                  let findIndex = ret.findIndex(item => item.fieldCode === key)
+                  if (findIndex !== -1) {
+                    if (ret[findIndex].valueLength.split(',')[0].slice(1) <= (zsCount + xsCount)) {
+                      ret[findIndex].valueLength = `(${zsCount + xsCount}, ${xsCount})`
+                    }
+                  } else {
+                    ret.push({
+                      fieldName: key,
+                      fieldCode: key,
+                      dataType: 'decimal',
+                      "valueLength": `(${zsCount + xsCount}, ${xsCount})`,
+                      "primaryKey": 0,
+                      "isConditionField": 0,
+                      "orderNo": ret.length + 1,
+                      "status": 1,
+                      "comment": "",
+                      "mandatory": 0,
+                      "defaultValue": ""
+                    })
+                  }
+                } else {
+                  ret.push({
+                    fieldName: key,
+                    fieldCode: key,
+                    dataType: 'int',
+                    "valueLength": 0,
+                    "primaryKey": 0,
+                    "isConditionField": 0,
+                    "orderNo": ret.length + 1,
+                    "status": 1,
+                    "comment": "",
+                    "mandatory": 0,
+                    "defaultValue": ""
+                  })
+                }
+                break
+              case 'boolean':
+                ret.push({
+                  fieldName: key,
+                  fieldCode: key,
+                  dataType: 'bit',
+                  "valueLength": 0,
+                  "primaryKey": 0,
+                  "isConditionField": 0,
+                  "orderNo": ret.length + 1,
+                  "status": 1,
+                  "comment": "",
+                  "mandatory": 0,
+                  "defaultValue": ""
+                })
+                break
+              case 'object':
+                if (i === arr.length - 1) {
+                  ret.push({
+                    fieldName: key,
+                    fieldCode: key,
+                    dataType: '',
+                    "valueLength": 0,
+                    "primaryKey": 0,
+                    "isConditionField": 0,
+                    "orderNo": ret.length + 1,
+                    "status": 1,
+                    "comment": "",
+                    "mandatory": 0,
+                    "defaultValue": ""
+                  })
+                }
+                break
+            }
+          }
+        }
+      }
+      // console.log(ret)
+
+
+      let data = [{
+        "fieldName": "表资源id",
+        "fieldCode": "table_id",
+        "dataType": "varchar",
+        "valueLength": 36,
+        "primaryKey": 0,
+        "isConditionField": 0,
+        "orderNo": 1,
+        "status": 1,
+        "comment": "",
+        "mandatory": 0,
+        "defaultValue": ""
+      }, {
+        "fieldName": "业务系统id",
+        "fieldCode": "sys_id",
+        "dataType": "decimal",
+        "valueLength": '7,2',
+        "primaryKey": 1,
+        "mandatory": 1,
+        "isConditionField": 0,
+        "orderNo": 2,
+        "status": 1,
+        "comment": "",
+        "defaultValue": ""
+      }]
+      
+      function validata (data) {
+        return data.find(item => {
+          if(!item.fieldName) {
+            console.log(`请输入第${item.orderNo}条数据的名称`)
+            return !item.fieldName
+          } else if(!item.fieldCode) {
+            console.log(`请输入${item.fieldName}的编码`)
+            return !item.fieldCode
+          } else if(!item.dataType) {
+            console.log(`请选择${item.fieldName}的数据类型`)
+            return !item.dataType
+          } else {
+            return check(item, item.dataType, item.valueLength)
+          }
+          
+        })
+      }
+      let result = validata (data)
+      if(result) {
+        // console.log('表单填写有误:', result)
+      } else {
+        console.log('ok')
+        console.log(data)
+      }
+      
+      function check(item, type, len) {
+        if(type === "decimal" || type === "numeric") {
+          if(!/^\s*[0-9]+\s*,\s*[0-9]+\s*$/.test(len)) {
+            console.log(`${item.fieldName}数据类型的长度的格式是 xx, x`)
+            return item
+          }
+        } else {
+          if(!/^\s*[0-9]+\s*$/.test(len)) {
+            console.log(`${item.fieldName}数据类型的长度必须是数字`, len)
+            return item
+          }
+        }
+        if (type === "date" || type === "datetime" || type === "timestamp" || type === "int" || type === "bigint" || type ===
+          "smallint" || type === "tinyint" || type === "money" ||
+          type === "smallmoney" || type === "real" || type === "varchar(max)" || type === "text" || type ===
+          "nvarchar(max)" || type === "ntext" || type === "varbinary(max) " ||
+          type === "image" || type === "hierarchyid" || type === "uniqueidentifier" || type === "sql_variant" || type ===
+          "xml" || type === "geometry" || type === "geography"
+        ) {
+          
+          item.valueLength = 0 //禁用长度
+          item.dataTypeLen = type
+        } else if (type === "datetime2" || type === "datetimeoffset" || type === "time") {
+          if (len < 1 || len > 7) {
+            // 错误提示
+            console.log(`${item.fieldName}数据类型的长度有误`)
+            return item
+          }
+          
+          item.dataTypeLen = type + "(" + len + ")"
+        } else if (type === "nchar" || type === "nvarchar") {
+          if (len < 1 || len > 4000) {
+            // 错误提示
+            console.log(`${item.fieldName}数据类型的长度有误`)
+            return item
+          }
+          item.dataTypeLen = type + "(" + len + ")"
+        } else if (type === "char" || type === "varchar" || type === "binary" || type === "varbinary") {
+          if (len < 1 || len > 8000) {
+            // 错误提示
+            console.log(`${item.fieldName}数据类型的长度有误`)
+            return item
+          }
+          item.valueLength = len
+          item.dataType = type
+          item.dataTypeLen = type + "(" + len + ")"
+        } else if (type === "float") {
+          if (len < 1 || len > 53) {
+            // 错误提示
+            console.log(`${item.fieldName}数据类型的长度有误`)
+            return item
+          }
+          item.dataTypeLen = type + "(" + len + ")"
+        } else if (type === "decimal" || type === "numeric") {
+          let splitArr = len.split(',')  // 15, 5 ===>>>  ['15', '5']
+          let zLen = splitArr[0].trim() // 总长度 15
+          let xsLen = splitArr[1].trim()  //获取小数点后的个数 5
+          if (zLen < 1 || zLen > 38) {
+            // 错误提示
+            console.log(`${item.fieldName}数据类型的长度有误`)
+            return item
+            
+          }
+          // 整数和小数长度判断
+          if (xsLen < 0 || xsLen > 10) {
+            // 错误提示
+            console.log(`${item.fieldName}数据类型的长度有误`)
+            return item
+          }
+      
+         item.dataTypeLen = type + "(" + len + ")"
+        }
+      }
+      
+    </script>
+  </body>
+</html>

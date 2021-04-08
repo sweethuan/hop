@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let res = {}
+      const data = [{
+          labelTitle: '项目个数',
+          dw: '个',
+          data: []
+        },
+        {
+          labelTitle: '出让面积',
+          dw: '公顷',
+          data: []
+        },
+        {
+          labelTitle: '出让总价',
+          dw: '万元',
+          data: []
+        },
+        {
+          labelTitle: '正常履约项目',
+          dw: '个',
+          data: []
+        },
+        {
+          labelTitle: '',
+          dw: '个',
+          data: []
+        },
+        {
+          labelTitle: '疑似闲置项目',
+          dw: '个',
+          data: []
+        }
+      ]
+
+      // 这是后台返回的数据
+      res.data = [{
+          "分类": "房地产",
+          "项目个数": "93",
+          "出让面积": "8413992.00",
+          "出让总价": 8077370,
+          "正常履约项目": "33",
+          "疑似闲置项目": "0"
+        },
+        {
+          "分类": "住宅",
+          "项目个数": "57",
+          "出让面积": "4734124.50",
+          "出让总价": 4876067,
+          "正常履约项目": "26",
+          "疑似闲置项目": "0"
+        },
+        {
+          "分类": "产业",
+          "项目个数": "0",
+          "出让面积": "0.00",
+          "出让总价": 0,
+          "正常履约项目": "0",
+          "疑似闲置项目": "0"
+        },
+        {
+          "分类": "其他",
+          "项目个数": "1",
+          "出让面积": "3141.00",
+          "出让总价": 1715,
+          "正常履约项目": "1",
+          "疑似闲置项目": "0"
+        }
+      ]
+
+      // 现在需要把`data`变成下面这种 请meowtoo 实现一下
+      /*data = [{
+          "labelTitle": "项目个数",
+          "dw": "个",
+          "data": [{
+              "label": "房地产",
+              "dw": "个",
+              "value": "93"
+            },
+            {
+              "label": "住宅",
+              "dw": "个",
+              "value": "57"
+            },
+            {
+              "label": "产业",
+              "dw": "个",
+              "value": "0"
+            },
+            {
+              "label": "其他",
+              "dw": "个",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "labelTitle": "出让面积",
+          "dw": "公顷",
+          "data": [{
+              "label": "房地产",
+              "dw": "公顷",
+              "value": "8413992.00"
+            },
+            {
+              "label": "住宅",
+              "dw": "公顷",
+              "value": "4734124.50"
+            },
+            {
+              "label": "产业",
+              "dw": "公顷",
+              "value": "0.00"
+            },
+            {
+              "label": "其他",
+              "dw": "公顷",
+              "value": "3141.00"
+            }
+          ]
+        },
+        {
+          "labelTitle": "出让总价",
+          "dw": "万元",
+          "data": [{
+              "label": "房地产",
+              "dw": "万元",
+              "value": "8077370.00"
+            },
+            {
+              "label": "住宅",
+              "dw": "万元",
+              "value": "4876067.00"
+            },
+            {
+              "label": "产业",
+              "dw": "万元",
+              "value": "0.00"
+            },
+            {
+              "label": "其他",
+              "dw": "万元",
+              "value": "1715.00"
+            }
+          ]
+        },
+        {
+          "labelTitle": "正常履约项目",
+          "dw": "个",
+          "data": [{
+              "label": "房地产",
+              "dw": "个",
+              "value": "33"
+            },
+            {
+              "label": "住宅",
+              "dw": "个",
+              "value": "26"
+            },
+            {
+              "label": "产业",
+              "dw": "个",
+              "value": "0"
+            },
+            {
+              "label": "其他",
+              "dw": "个",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "labelTitle": "",
+          "dw": "个",
+          "data": []
+        },
+        {
+          "labelTitle": "疑似闲置项目",
+          "dw": "个",
+          "data": [{
+              "label": "房地产",
+              "dw": "个",
+              "value": "0"
+            },
+            {
+              "label": "住宅",
+              "dw": "个",
+              "value": "0"
+            },
+            {
+              "label": "产业",
+              "dw": "个",
+              "value": "0"
+            },
+            {
+              "label": "其他",
+              "dw": "个",
+              "value": "0"
+            }
+          ]
+        }
+      ] */
+      for (let i = 0; i < res.data.length; i++) {
+        for (let j in res.data[i]) {
+          for (let m = 0; m < data.length; m++) {
+            if (j == data[m].labelTitle) {
+              if (j == '出让面积') {
+                //转换方法
+              } else {
+                let obj = {
+                  label: res.data[i]["分类"],
+                  dw: data[m].dw
+                  value: res.data[i][j]
+                }
+                obj.push(data.data)
+              }
+            }
+          }
+        }
+      }
+      console.log(data)
+    </script>
+  </body>
+</html>

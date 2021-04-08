@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+    <script type="text/javascript">
+      let num = 2
+      function a() {
+        switch(num) {
+          case 1:
+            return console.log(1)
+          case 2:
+            return console.log(2)
+          case 3:
+            return console.log(3)
+          case 3:
+            return console.log(4)
+        }
+      }
+      a()
+      
+      const flag = 1
+      const options = [{
+        value: 1,
+        label: '数据视图'
+        }, {
+        value: 2,
+        label: '数据接口'
+        }, {
+        value: 3,
+        label: 'Excel'
+      }]
+      let label = options.filter(item => {
+        return item.value === flag
+      })
+    </script>
+	</body>
+</html>

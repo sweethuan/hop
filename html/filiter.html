@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+    <script type="text/javascript">
+      let arr = [{
+        paramCode: "startTime",
+        paramName: "开始时间",
+        paramType: "datetime"
+      }, {
+        paramCode: "endTime",
+        paramName: "结束时间",
+        paramType: "datetime"
+      }]
+      let arr1 = [
+        {
+          type: 'input',
+          key: "paramCode",
+          options: []
+        },
+        {
+          type: 'input',
+          key: "paramName",
+          options: []
+        },
+        {
+          type: 'input',
+          key: "paramType",
+          options: []
+        },
+      ]
+      arr.forEach(item => {
+        arr1.forEach(inner => {
+          for (let key in item) {
+            if(key === inner.key) {
+              inner.options.push({value: item[key]})
+            }
+          }
+        })
+      })
+      console.log(arr1)
+    </script>
+	</body>
+</html>

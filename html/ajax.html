@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="" />
+  </head>
+  <body>
+    <script type="text/javascript">
+      // $.ajax("../js/city.json").then((res) => {
+      // 	console.log(res)
+      // })
+      let arr = [{
+        name: 'jack',
+        age: 18
+      }]
+      arr.find(item => {
+        check(item, item.name)
+      })
+
+      function check(item, name) {
+        if (name === 'jack') {
+          item.age = 0
+        }
+      }
+      // console.log(arr)
+      // setTimeout(function() {
+      //   console.log('timeout1');
+      // })
+      
+      // new Promise(function(resolve) {
+      //   console.log('promise1');
+      //   for (var i = 0; i < 1000; i++) {
+      //     i == 99 && resolve();
+      //   }
+      //   console.log('promise2');
+      // }).then(function() {
+      //   console.log('then1');
+      // })
+      
+      // console.log('global1')
+      async function async1() {
+          console.log('async1 start')
+          await async2();
+          console.log('async1 end')
+      }
+      async function async2() {
+          console.log('async2')
+      }
+      
+      console.log('script start')
+      
+      setTimeout(function() {
+          console.log('setTimeout')
+      }, 0)
+      
+      async1();
+      
+      new Promise(function(resolve) {
+          console.log('promise1')
+          resolve();
+      }).then(function() {
+          console.log('promise2')
+      });
+      console.log('script end')
+      // ----------------------------------------------------
+      else if (moduleId === 'ca7bb63b4cd14337bd9848d12abe06cc--1') { // 土地供应数据明细表格请求拦截
+        obj.sftsqk(true)
+        // console.log('土地供应数据明细表格:', obj)
+        const params = {
+          currentPage: 1,
+          pageSize: 20,
+          zdwz: obj.zdwz,
+          htbh: obj.htbh,
+          htqdrqks: obj.htqdrqks,
+          htqdrqjs: obj.htqdrqjs
+        }
+        this.$nextTick(() => {
+          this.changePageData('ca7bb63b4cd14337bd9848d12abe06cc', (items) => {
+            if (!this.settingConfig.area.length) {
+              items.conditionAreaConfig.screenData[0].isDisabled = true
+              items.conditionAreaConfig.screenData[0].defaultValue = '中心城区'
+              let countryList = typeof obj.country === 'string' && obj.country.length ? obj.country.split(',') : ['渝中区', '南岸区', '沙坪坝区', '江北区', '九龙坡区', '大渡口区', '渝北区', '巴南区', '北碚区', '两江新区', '高新区']
+              if (obj.country === '所有') {
+                countryList = undefined
+              }
+              params.xzq = countryList
+            } else {
+              items.conditionAreaConfig.screenData[0].isDisabled = true
+              items.conditionAreaConfig.screenData[0].defaultValue = this.settingConfig.area[0]
+              const countryList = typeof obj.country === 'string' && obj.country.length ? obj.country : obj.xzq
+              params.xzq = countryList
+            }
+            // console.log('土地供应数据明细表格:', params)
+            this.getJdjgDetailsData(params, '/tjfx/selectTdgyData', res => {
+              obj.tsqkData({
+                total: res.data.total,
+                list: res.data.list
+              })
+            })
+          }, 114)
+        })
+      } else if (moduleId === 'f40658cc9307497884a441da12b15306--1') { // 已缴清表格请求拦截
+        obj.sftsqk(true)
+        const params = {
+          currentPage: 1,
+          pageSize: 20,
+          zdwz: obj.zdwz,
+          htbh: obj.htbh,
+          htqdrqks: obj.htqdrqks,
+          htqdrqjs: obj.htqdrqjs
+        }
+        this.$nextTick(() => {
+          this.changePageData('f40658cc9307497884a441da12b15306', (items) => {
+            if (!this.settingConfig.area.length) {
+              items.conditionAreaConfig.screenData[0].isDisabled = true
+              items.conditionAreaConfig.screenData[0].defaultValue = '中心城区'
+              let countryList = typeof obj.country === 'string' && obj.country.length ? obj.country.split(',') : ['渝中区', '南岸区', '沙坪坝区', '江北区', '九龙坡区', '大渡口区', '渝北区', '巴南区', '北碚区', '两江新区', '高新区']
+              if (obj.country === '所有') {
+                countryList = undefined
+              }
+              params.xzq = countryList
+            } else {
+              items.conditionAreaConfig.screenData[0].isDisabled = true
+              items.conditionAreaConfig.screenData[0].defaultValue = this.settingConfig.area[0]
+              const countryList = typeof obj.country === 'string' && obj.country.length ? obj.country.split(',') : obj.xzq
+              params.xzq = countryList
+            }
+            this.getJdjgDetailsData(params, '/tjfx/selectYjqData', res => {
+              obj.tsqkData({
+                total: res.data.total,
+                list: res.data.list
+              })
+            })
+          }, 114)
+        })
+      } else if (moduleId === '4bd126ec38b04fa788e5ff88857f8db8--1') { // 逾期未缴纳表格请求拦截
+        obj.sftsqk(true)
+        // console.log('----------', obj)
+        const params = {
+          currentPage: 1,
+          pageSize: 20,
+          zdwz: obj.zdwz,
+          htbh: obj.htbh,
+          htqdrqks: obj.htqdrqks,
+          htqdrqjs: obj.htqdrqjs
+        }
+        this.$nextTick(() => {
+          this.changePageData('4bd126ec38b04fa788e5ff88857f8db8', (items) => {
+            if (!this.settingConfig.area.length) {
+              items.conditionAreaConfig.screenData[0].isDisabled = true
+              items.conditionAreaConfig.screenData[0].defaultValue = '中心城区'
+              let countryList = typeof obj.country === 'string' && obj.country.length ? obj.country.split(',') : ['渝中区', '南岸区', '沙坪坝区', '江北区', '九龙坡区', '大渡口区', '渝北区', '巴南区', '北碚区', '两江新区', '高新区']
+              if (obj.country === '所有') {
+                countryList = undefined
+              }
+              params.xzq = countryList
+            } else {
+              items.conditionAreaConfig.screenData[0].isDisabled = true
+              items.conditionAreaConfig.screenData[0].defaultValue = this.settingConfig.area[0]
+              const countryList = typeof obj.country === 'string' && obj.country.length ? obj.country.split(',') : obj.xzq
+              params.xzq = countryList
+            }
+            this.getJdjgDetailsData(params, '/tjfx/selectYqwjnData', res => {
+              obj.tsqkData({
+                total: res.data.total,
+                list: res.data.list
+              })
+            })
+          }, 114)
+        })
+      } else if (moduleId === 'b940d94cd8e14b908b0c5dda899246e6--1') { // 分期缴纳未到期表格请求拦截
+        obj.sftsqk(true)
+        // console.log('----------', obj)
+        const params = {
+          currentPage: 1,
+          pageSize: 20,
+          zdwz: obj.zdwz,
+          htbh: obj.htbh,
+          htqdrqks: obj.htqdrqks,
+          htqdrqjs: obj.htqdrqjs
+        }
+        this.$nextTick(() => {
+          this.changePageData('b940d94cd8e14b908b0c5dda899246e6', (items) => {
+            if (!this.settingConfig.area.length) {
+              items.conditionAreaConfig.screenData[0].isDisabled = true
+              items.conditionAreaConfig.screenData[0].defaultValue = '中心城区'
+              let countryList = typeof obj.country === 'string' && obj.country.length ? obj.country.split(',') : ['渝中区', '南岸区', '沙坪坝区', '江北区', '九龙坡区', '大渡口区', '渝北区', '巴南区', '北碚区', '两江新区', '高新区']
+              if (obj.country === '所有') {
+                countryList = undefined
+              }
+              params.xzq = countryList
+            } else {
+              items.conditionAreaConfig.screenData[0].isDisabled = true
+              items.conditionAreaConfig.screenData[0].defaultValue = this.settingConfig.area[0]
+              const countryList = typeof obj.country === 'string' && obj.country.length ? obj.country.split(',') : obj.xzq
+              params.xzq = countryList
+            }
+            this.getJdjgDetailsData(params, '/tjfx/selectFqwjnData', res => {
+              obj.tsqkData({
+                total: res.data.total,
+                list: res.data.list
+              })
+            })
+          }, 114)
+        })
+      }
+      // -----------------------------------
+    </script>
+  </body>
+</html>

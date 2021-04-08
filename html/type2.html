@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let data = [{
+        name: -123456789012.123,
+        age: 18,
+      }, {
+        name: 5,
+        age: 12.365,
+      }, {
+        name: 12345678901.12,
+        age: 38,
+      }]
+      let ret = []
+      for (let i = 0; i < data.length; i++) {
+        for (let key in data[i]) {
+          if (!(ret.find(item => item.fieldName === key)) || typeof data[i][key] === 'number') {
+            switch (typeof data[i][key]) {
+              case 'string':
+                if (/^\d{4}(-|\/)\d{1,2}(-|\/)\d{1,2}/.test(data[i][key])) {
+                  ret.push({
+                    "fieldName": key,
+                    "fieldCode": key,
+                    "dataType": "datatime",
+                    "valueLength": 0,
+                    "primaryKey": 0,
+                    "isConditionField": 0,
+                    "orderNo": ret.length + 1,
+                    "status": 1,
+                    "comment": "",
+                    "mandatory": 0,
+                    "defaultValue": ""
+                  })
+                } else {
+                  ret.push({
+                    "fieldName": key,
+                    "fieldCode": key,
+                    "dataType": "varchar",
+                    "valueLength": 255,
+                    "primaryKey": 0,
+                    "isConditionField": 0,
+                    "orderNo": ret.length + 1,
+                    "status": 1,
+                    "comment": "",
+                    "mandatory": 0,
+                    "defaultValue": ""
+                  })
+                }
+                break
+              case 'number':
+                if (String(data[i][key]).indexOf('.') !== -1) {
+                  // console.log(key, data[i][key])
+                  let splitArr = String(Math.abs(data[i][key])).split('.')
+                  let zsCount = splitArr[0].length //获取小数点前的个数
+                  let xsCount = splitArr[1].length //获取小数点后的个数
+                  if (zsCount <= 10) {
+                    zsCount = 10
+                  }
+                  if (xsCount >= 10) {
+                    xsCount = 10
+                  }
+
+                  let findIndex = ret.findIndex(item => item.fieldCode === key)
+                  if (findIndex !== -1) { // 找到了同字段元素
+                    if(ret[findIndex].dataType === 'decimal') { // 如果原来就是小数类型
+                      let valArr = ret[findIndex].valueLength.split(',') // ['13', ' 3']
+                      let zsValLen = valArr[0].trim() - valArr[1].trim() // 之前整数位数: 10
+                      let xsValLen = valArr[1].trim() // 之前小数位数: 3 
+                      if (zsValLen <= zsCount) { // 如果之前的整数位比现在 <=
+                        if(xsValLen <= xsCount) { // 如果之前的小数位比现在 <=
+                          ret[findIndex].valueLength = `${zsCount + xsCount}, ${xsCount}`
+                        } else {   // 如果之前的小数位比现在 >
+                          ret[findIndex].valueLength = `${parseInt(zsCount) + parseInt(xsValLen)}, ${xsValLen}`
+                        }
+                      } else { // 如果之前的整数位比现在 >
+                        if(xsValLen < xsCount) { // 如果之前的小数位比现在 <
+                          ret[findIndex].valueLength = `${parseInt(zsValLen) + parseInt(xsCount)}, ${xsCount}`
+                        }
+                      }
+                    } else { // 如果原来是int类型
+                      ret[findIndex].dataType = `decimal`
+                      ret[findIndex].valueLength = `${zsCount + xsCount}, ${xsCount}`
+                    }
+                    
+                  } else { // 没找到就新增
+                    ret.push({
+                      fieldName: key,
+                      fieldCode: key,
+                      dataType: 'decimal',
+                      "valueLength": `${zsCount + xsCount}, ${xsCount}`,
+                      "primaryKey": 0,
+                      "isConditionField": 0,
+                      "orderNo": ret.length + 1,
+                      "status": 1,
+                      "comment": "",
+                      "mandatory": 0,
+                      "defaultValue": ""
+                    })
+                  }
+                } else { // 如果不是小数 而是整数
+                  let findIndex = ret.findIndex(item => item.fieldCode === key)
+                  if (findIndex === -1) { // 没找到了同字段元素就添加
+                    ret.push({
+                      fieldName: key,
+                      fieldCode: key,
+                      dataType: 'int',
+                      "valueLength": 0,
+                      "primaryKey": 0,
+                      "isConditionField": 0,
+                      "orderNo": ret.length + 1,
+                      "status": 1,
+                      "comment": "",
+                      "mandatory": 0,
+                      "defaultValue": ""
+                    }) 
+                  }
+                }
+                break
+              case 'boolean':
+                ret.push({
+                  fieldName: key,
+                  fieldCode: key,
+                  dataType: 'bit',
+                  "valueLength": 0,
+                  "primaryKey": 0,
+                  "isConditionField": 0,
+                  "orderNo": ret.length + 1,
+                  "status": 1,
+                  "comment": "",
+                  "mandatory": 0,
+                  "defaultValue": ""
+                })
+                break
+              case 'object':
+                if (i === data.length - 1) {
+                  ret.push({
+                    fieldName: key,
+                    fieldCode: key,
+                    dataType: '',
+                    "valueLength": 0,
+                    "primaryKey": 0,
+                    "isConditionField": 0,
+                    "orderNo": ret.length + 1,
+                    "status": 1,
+                    "comment": "",
+                    "mandatory": 0,
+                    "defaultValue": ""
+                  })
+                }
+                break
+            }
+          }
+        }
+      }
+      console.log(data)
+      console.log(ret)
+    </script>
+  </body>
+</html>

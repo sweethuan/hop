@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+    <script type="text/javascript">
+      let obj = {
+        '名字': 'name',
+        '年龄': 'age'
+      }
+      let arr = [{
+        '名  字': '张三',
+        '年龄': 12
+      }, {
+        '名字': '李四',
+        '年龄': 18
+      }]
+      arr.forEach(item => {
+        for (let key in item) {
+          for (let keys in obj) {
+            if(key.replace(/\s+/g, "") === keys) {
+              item[obj[keys]] = item[key]
+              delete item[key]
+            }
+          }
+        }
+      })
+      console.log(arr)
+    </script>
+	</body>
+</html>

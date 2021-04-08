@@ -10,7 +10,11 @@
 		<div id="app">
 			<div>{{num}}</div>
 			<button type="button" @click="jiajia">点击</button>
-
+      <div v-for="item in [a.mp3, b.mp4, c.jpg]">
+        <img v-if="后缀名===jpg" :src="item">
+        <audio v-if="后缀名===mp3" :src="item"></audio>
+        <vedio v-if="后缀名===mp4" :src="item"></vedio>
+      </div>
 		</div>
 		<script>
 			let obj = {
