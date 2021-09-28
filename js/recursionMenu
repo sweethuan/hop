@@ -83,4 +83,5 @@ function findIdList(idList, id) {
 }
 
 const res = findIdList(ids, 5)
+
 console.log(res)
