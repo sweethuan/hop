@@ -1,0 +1,86 @@
+const ids = [
+	{
+		id: 1,
+		name: '张三',
+		children: [
+			{
+				id: 2,
+				name: '李四',
+				children: [
+					{
+						id: 3,
+						name: '王五',
+					},
+					{
+						id: 4,
+						name: '赵六',
+					}
+				]
+			},
+			{
+				id: 5,
+				name: '潘七',
+			}
+		],
+	},
+	{
+		id: 6,
+		name: '唐八',
+	},
+	{
+		id: 7,
+		name: '孙九',
+		children: [
+			{
+				id: 8,
+				name: '苏十',
+				children: [
+					{
+						id: 9,
+						name: '何一',
+						children: [
+							{
+								id: 10,
+								name: '孔二',
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]
+// 写一个函数 如果传入id为10 则返回如下数组
+// 也就是拿传入的id去匹配它所有的父级
+// 这个怎么实现
+// [
+// 	{id: 7,	name: '孙九'},
+// 	{id: 8, name: '苏十'},
+// 	{id: 9, name: '何一'},
+// 	{id: 10,name: '孔二'}
+// ]
+
+
+function findIdList(idList, id) {
+	const findIds = []
+	function recur(idList, id) {
+		for (let item of idList) {
+			if(item.id === id) {
+				findIds.unshift(item)
+				return item
+			} else if (item.children && item.children.length) {
+				const result = recur(item.children, id)
+				if(result) {
+					recur(ids, item.id)
+				}
+			}
+		}
+	}
+	
+	recur(idList, id)
+	
+	return findIds
+}
+
+const res = findIdList(ids, 5)
+console.log(res)
